@@ -27,3 +27,4 @@
 ## 리팩터링 
 - [x] #result-container에 justify-content 속성 추가 
 - [x] .input-btn-wrapper를 추가하고 flex 속성 적용 
+- [x] .numbers-input에 justify-content 속성 추가 

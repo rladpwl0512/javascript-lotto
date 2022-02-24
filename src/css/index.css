@@ -136,6 +136,7 @@ label {
 
 .numbers-input {
   display: flex;
+  justify-content: space-between;
 }
 
 .winning-numbers-input {
