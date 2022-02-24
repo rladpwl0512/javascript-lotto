@@ -23,3 +23,6 @@
 - [x] 다시 시작하기 버튼을 누를시 초기창으로 돌아간다.
 
 <img src="./../images/Diagram.jpg">
+
+## 리팩터링 
+- [x] #result-container에 justify-content 속성 추가 

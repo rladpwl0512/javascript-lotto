@@ -55,11 +55,7 @@ label {
 
 #result-container {
   display: flex;
-}
-
-#purchase-result {
-  width: 75%;
-  margin-right: 30px;
+  justify-content: space-between;
 }
 
 #result-lotto {
@@ -67,10 +63,6 @@ label {
   flex-wrap: wrap;
   margin-top: 10px;
   font-size: 34px;
-}
-
-#view-number {
-  margin-left: 10px;
 }
 
 .toggle-switch input[type='checkbox'] {
