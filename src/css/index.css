@@ -1,5 +1,4 @@
 * {
-  box-sizing: border-box;
 }
 
 h1 {
@@ -21,6 +20,11 @@ label {
 #lotto-price-form {
   width: 100%;
   margin-top: 40px;
+}
+
+.input-btn-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 #lotto-price-input {
@@ -140,7 +144,6 @@ label {
 }
 
 .bonus-number {
-  margin-left: 85px;
   display: flex;
   flex-direction: column;
 }
