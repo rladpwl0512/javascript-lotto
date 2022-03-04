@@ -96,8 +96,8 @@ var LottoController = /*#__PURE__*/function () {
       this.$lottoPriceForm = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-price-form');
       this.$lottoPriceInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-price-input');
       this.$lottoPriceButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-price-button');
+      this.$popup = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#popup');
       this.$result = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#result');
-      this.$popup = document.querySelector('#popup');
     }
   }, {
     key: "bindEvent",
@@ -545,7 +545,7 @@ var InputView = /*#__PURE__*/function () {
     _classCallCheck(this, InputView);
 
     this.$result = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#result');
-    this.$lottoPriceInput = document.querySelector('#lotto-price-input');
+    this.$lottoPriceInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-price-input');
   }
 
   _createClass(InputView, [{
@@ -577,7 +577,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ PopupView)
 /* harmony export */ });
-/* harmony import */ var _template_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template/index */ "./src/js/view/template/index.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/dom */ "./src/js/utils/dom.js");
+/* harmony import */ var _template_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./template/index */ "./src/js/view/template/index.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -586,18 +587,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 var PopupView = /*#__PURE__*/function () {
   function PopupView() {
     _classCallCheck(this, PopupView);
 
-    this.$popup = document.querySelector('#popup');
-    this.$mainContainer = document.querySelector('.main-container');
+    this.$popup = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#popup');
+    this.$mainContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.main-container');
   }
 
   _createClass(PopupView, [{
     key: "renderPopup",
     value: function renderPopup(winningType, earningRate) {
-      this.$popup.insertAdjacentHTML('beforeend', _template_index__WEBPACK_IMPORTED_MODULE_0__["default"].makePopupTemplate(winningType, earningRate));
+      this.$popup.insertAdjacentHTML('beforeend', _template_index__WEBPACK_IMPORTED_MODULE_1__["default"].makePopupTemplate(winningType, earningRate));
     }
   }, {
     key: "toggleMainContainerState",
