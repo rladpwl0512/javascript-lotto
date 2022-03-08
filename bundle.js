@@ -93,11 +93,11 @@ var LottoController = /*#__PURE__*/function () {
   }, {
     key: "initDOMs",
     value: function initDOMs() {
-      this.$lottoPriceForm = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('#lotto-price-form');
-      this.$lottoPriceInput = this.$lottoPriceForm.querySelector('#lotto-price-input');
-      this.$lottoPriceButton = this.$lottoPriceForm.querySelector('#lotto-price-button');
-      this.$popup = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('#popup');
-      this.$result = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('#result');
+      this.$lottoPriceForm = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-price-form');
+      this.$lottoPriceInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-price-input', this.$lottoPriceForm);
+      this.$lottoPriceButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-price-button', this.$lottoPriceForm);
+      this.$popup = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#popup');
+      this.$result = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#result');
     }
   }, {
     key: "bindEvent",
@@ -121,7 +121,7 @@ var LottoController = /*#__PURE__*/function () {
   }, {
     key: "initDOMsAfterRenderResult",
     value: function initDOMsAfterRenderResult() {
-      this.$checkbox = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('#view-checkbox');
+      this.$checkbox = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#view-checkbox');
     }
   }, {
     key: "bindEventAfterRenderResult",
@@ -138,6 +138,7 @@ var LottoController = /*#__PURE__*/function () {
     key: "initLottoGame",
     value: function initLottoGame() {
       this.inputView.initLottoPriceInput();
+      this.inputView.activeLottoPriceForm();
       this.resultView.initResult();
       this.lottoModel.initGame();
       this.unbindEvent();
@@ -175,9 +176,9 @@ var LottoController = /*#__PURE__*/function () {
     value: function handleResultButtonClick(_ref2) {
       var target = _ref2.target;
       if (target.id !== 'check-result-button') return;
-      var $numbersInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('.numbers-input');
-      var $winningNumberInputs = $numbersInput.querySelectorAll('.winning-number-input');
-      var $bonusNumberInput = $numbersInput.querySelector('.bonus-number-input');
+      var $numbersInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.numbers-input');
+      var $winningNumberInputs = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$$)('.winning-number-input', $numbersInput);
+      var $bonusNumberInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.bonus-number-input', $numbersInput);
       var winnerNumberArray = Array.from($winningNumberInputs).map(function ($winnnigNumberInput) {
         return $winnnigNumberInput.valueAsNumber;
       });
@@ -289,13 +290,18 @@ var LottoModel = /*#__PURE__*/function () {
   }, {
     key: "generateLottoNumbers",
     value: function generateLottoNumbers() {
-      var lottoNumberSet = new Set();
+      var lottoArray = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      var randomLottoNumber = (0,_utils_random__WEBPACK_IMPORTED_MODULE_0__["default"])(_constants_index__WEBPACK_IMPORTED_MODULE_1__.LOTTO_NUMBERS.MIN_LOTTO_NUMBER, _constants_index__WEBPACK_IMPORTED_MODULE_1__.LOTTO_NUMBERS.MAX_LOTTO_NUMBER);
 
-      while (lottoNumberSet.size < _constants_index__WEBPACK_IMPORTED_MODULE_1__.LOTTO_NUMBERS.LOTTO_LENGTH) {
-        lottoNumberSet.add((0,_utils_random__WEBPACK_IMPORTED_MODULE_0__["default"])(_constants_index__WEBPACK_IMPORTED_MODULE_1__.LOTTO_NUMBERS.MIN_LOTTO_NUMBER, _constants_index__WEBPACK_IMPORTED_MODULE_1__.LOTTO_NUMBERS.MAX_LOTTO_NUMBER));
+      if (lottoArray.length === _constants_index__WEBPACK_IMPORTED_MODULE_1__.LOTTO_NUMBERS.LOTTO_LENGTH) {
+        return lottoArray;
       }
 
-      return _toConsumableArray(lottoNumberSet);
+      if (!lottoArray.includes(randomLottoNumber)) {
+        lottoArray.push(randomLottoNumber);
+      }
+
+      return this.generateLottoNumbers(lottoArray);
     }
   }, {
     key: "setLottos",
@@ -413,13 +419,15 @@ var LottoModel = /*#__PURE__*/function () {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "$": () => (/* binding */ $),
+/* harmony export */   "$$": () => (/* binding */ $$)
 /* harmony export */ });
-var $ = function $(selector) {
-  return document.querySelector(selector);
+var $ = function $(selector, parent) {
+  return (parent !== null && parent !== void 0 ? parent : document).querySelector(selector);
 };
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ($);
+var $$ = function $$(selector, parent) {
+  return (parent !== null && parent !== void 0 ? parent : document).querySelectorAll(selector);
+};
 
 /***/ }),
 
@@ -544,10 +552,10 @@ var InputView = /*#__PURE__*/function () {
   function InputView() {
     _classCallCheck(this, InputView);
 
-    this.$result = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('#result');
-    this.$lottoPriceForm = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('#lotto-price-form');
-    this.$lottoPriceInput = this.$lottoPriceForm.querySelector('#lotto-price-input');
-    this.$lottoPriceButton = this.$lottoPriceForm.querySelector('#lotto-price-button');
+    this.$result = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#result');
+    this.$lottoPriceForm = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-price-form');
+    this.$lottoPriceInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-price-input', this.$lottoPriceForm);
+    this.$lottoPriceButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#lotto-price-button', this.$lottoPriceForm);
   }
 
   _createClass(InputView, [{
@@ -556,6 +564,13 @@ var InputView = /*#__PURE__*/function () {
       this.$lottoPriceInput.disabled = true;
       this.$lottoPriceButton.disabled = true;
       this.$lottoPriceButton.classList.add('disable');
+    }
+  }, {
+    key: "activeLottoPriceForm",
+    value: function activeLottoPriceForm() {
+      this.$lottoPriceInput.disabled = false;
+      this.$lottoPriceButton.disabled = false;
+      this.$lottoPriceButton.classList.remove('disable');
     }
   }, {
     key: "renderWinningNumbersInput",
@@ -601,8 +616,8 @@ var PopupView = /*#__PURE__*/function () {
   function PopupView() {
     _classCallCheck(this, PopupView);
 
-    this.$popup = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('#popup');
-    this.$mainContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('.main-container');
+    this.$popup = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#popup');
+    this.$mainContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.main-container');
   }
 
   _createClass(PopupView, [{
@@ -655,7 +670,7 @@ var ResultView = /*#__PURE__*/function () {
   function ResultView() {
     _classCallCheck(this, ResultView);
 
-    this.$result = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('#result');
+    this.$result = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#result');
   }
 
   _createClass(ResultView, [{
@@ -666,8 +681,8 @@ var ResultView = /*#__PURE__*/function () {
   }, {
     key: "renderLottos",
     value: function renderLottos(lottos) {
-      var $resultLottos = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('#result-lotto');
-      var $lottos = $resultLottos.querySelectorAll('.lotto');
+      var $resultLottos = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#result-lotto');
+      var $lottos = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$$)('.lotto', $resultLottos);
       $lottos.forEach(function ($lotto, idx) {
         $lotto.insertAdjacentHTML('beforeend', "<div class=\"lotto-numbers\">".concat(lottos[idx].join(', '), "</div>"));
       });
@@ -676,8 +691,8 @@ var ResultView = /*#__PURE__*/function () {
   }, {
     key: "initLottos",
     value: function initLottos() {
-      var $resultLottos = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__["default"])('#result-lotto');
-      var $lottosNumbers = $resultLottos.querySelectorAll('.lotto-numbers');
+      var $resultLottos = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#result-lotto');
+      var $lottosNumbers = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$$)('.lotto-numbers', $resultLottos);
       $lottosNumbers.forEach(function ($lottosNumber) {
         $lottosNumber.remove();
       });
